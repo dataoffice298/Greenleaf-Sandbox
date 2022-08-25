@@ -1,0 +1,55 @@
+{
+  "id": "b657d2d8-d869-44f8-947d-58e591af5c4a",
+  "name": "GreenLeaf",
+  "publisher": "B2B Software Technologies Ltd",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "1b1f1ff9-fc0c-4b3b-a8a6-4c439ede0801",
+      "name": "B2B Quality Control",
+      "publisher": "B2B Software Technologies Limited",
+      "version": "1.0.0.4"
+    },
+    {
+      "id": "db643212-b7fb-4dd4-b5a8-cb44ac714461",
+      "publisher": "Microsoft",
+      "name": "India GST",
+      "version": "20.4.44313.44936"
+    },
+    {
+      "id": "c1eafb3f-e397-468e-bdb4-ecc5c317ca00",
+      "publisher": "Microsoft",
+      "name": "Tax Engine",
+      "version": "20.4.44313.44936"
+    },
+    {
+      "id": "d3c551dd-5903-4194-b153-04ced9d29a2c",
+      "publisher": "Microsoft",
+      "name": "India Tax Base",
+      "version": "20.4.44313.45167"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "20.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 99999999
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "9.0",
+  "target": "Cloud"
+}

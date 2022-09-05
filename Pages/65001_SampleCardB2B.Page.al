@@ -516,7 +516,7 @@ page 65001 "Sample Card B2B"
                         PromotedCategory = Category5;
                         //PromotedIsBig = true;
                         PromotedOnly = true;
-                        RunObject = page "Posted Ins Receipt List B2B";
+                        RunObject = page "Purchase Order";
                         RunPageLink = "Sample ID" = field("Sample ID"),
                                         "No." = field("Sample Purchase Dispatch No.");
                     }

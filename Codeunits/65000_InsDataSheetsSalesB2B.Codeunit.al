@@ -442,7 +442,7 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
                     InspectDataHeader.Description := SalesHeader."Sell-to Customer No.";
                     //InspectDataHeader."Posted Sales Return Order  No." := ReturnReceiptHeader."No.";//
                     InspectDataHeader."Order No." := SalesHeader."No.";
-                    InspectDataHeader."Sales. Line No" := salesLine."Line No.";
+                    InspectDataHeader."Sales. Line No GLF" := salesLine."Line No.";
                     InspectDataHeader."Document Type" := InspectDataHeader."Document Type"::"Sales Order";
                     InspectDataHeader."Posting Date" := SalesHeader."Posting Date";
                     InspectDataHeader."Document Date" := SalesHeader."Document Date";
@@ -454,22 +454,22 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
                     InspectDataHeader."Item No." := salesLine."No.";
                     InspectDataHeader."Item Description" := salesLine.Description;
                     //InspectDataHeader.Quantity := salesLine.Quantity;
-                    InspectDataHeader.Quantity := salesLine."Qty. Sending To Quality";
+                    InspectDataHeader.Quantity := salesLine."Qty. Sending To Quality GLF";
                     InspectDataHeader."Item Tracking Exists" := false;
                     InspectDataHeader."Quality Before Receipt" := true;
-                    CheckSpecCertified(salesLine."Spec ID");
-                    InspectDataHeader."Spec ID" := salesLine."Spec ID";
+                    CheckSpecCertified(salesLine."Spec ID GLF");
+                    InspectDataHeader."Spec ID" := salesLine."Spec ID GLF";
                     InspectDataHeader."Shortcut Dimension 1 Code" := salesLine."Shortcut Dimension 1 Code";
                     InspectDataHeader."Shortcut Dimension 2 Code" := salesLine."Shortcut Dimension 2 Code";
                     InspectDataHeader."Dimension Set ID" := salesLine."Dimension Set ID";
-                    InspectDataHeader."Sample ID" := SalesHeader."Sample ID";
+                    InspectDataHeader."Sample ID GLF" := SalesHeader."Sample ID GLF";
                     //InspectDataHeader."Quality Before Receipt" := True;
                 end;
             //B2BSample1.0>>
             InspectionType::"Sample QC":
                 begin
                     InspectDataHeader.VALIDATE("Document Type", InspectDataHeader."Document Type"::"Sample QC");
-                    InspectDataHeader.VALIDATE("Sample ID", SampleGRec."Sample ID");
+                    InspectDataHeader.VALIDATE("Sample ID GLF", SampleGRec."Sample ID");
                     InspectDataHeader.VALIDATE("Source Type", InspectDataHeader."Source Type"::"In Bound");
                     InspectDataHeader.VALIDATE("Posting Date", WORKDATE);
                     InspectDataHeader.VALIDATE("Document Date", WORKDATE);
@@ -498,7 +498,7 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
                 begin
                     InspectDataHeader.Description := SalesHeader."Sell-to Customer No.";
                     InspectDataHeader."Order No." := SalesHeader."No.";
-                    InspectDataHeader."Sales. Line No" := salesLine."Line No.";
+                    InspectDataHeader."Sales. Line No GLF" := salesLine."Line No.";
                     InspectDataHeader."Posting Date" := SalesHeader."Posting Date";
                     InspectDataHeader."Document Date" := SalesHeader."Document Date";
                     InspectDataHeader."Document Type" := InspectDataHeader."Document Type"::"Sales Order";
@@ -506,7 +506,7 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
                     InspectDataHeader."Source Type" := InspectDataHeader."Source Type"::"In Bound";
                     InspectDataHeader."External Document No." := SalesHeader."External Document No.";
                     InspectDataHeader."Unit of Measure Code" := salesLine."Unit of Measure Code";
-                    InspectDataHeader."Spec Version" := salesLine."Spec Version";
+                    InspectDataHeader."Spec Version" := salesLine."Spec Version GLF";
                     InspectDataHeader."Item Tracking Exists" := true;
                     InspectDataHeader."Quality Before Receipt" := false;
                     InspectDataHeader."Item No." := InspLot."Item No.";
@@ -519,7 +519,7 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
                     InspectDataHeader."Qty. per Unit of Measure" := salesLine."Qty. per Unit of Measure";
                     InspectDataHeader."Base Unit of Measure" := Item."Base Unit of Measure";
                     InspectDataHeader."Quantity (Base)" := salesLine."Quantity (Base)";
-                    InspectDataHeader."Sample ID" := SalesHeader."Sample ID";
+                    InspectDataHeader."Sample ID GLF" := SalesHeader."Sample ID GLF";
                 end;
         //B2BSalesLot1.0<<
         end;
@@ -855,8 +855,8 @@ codeunit 65000 "Ins Data Sheets Sales B2B"
         SalesLine.COPY(SalesLine2);
         InitInspectionHeader(InspectionType::"Sales Order");
         InsertInspectionDataHeader();
-        SalesLine2."Qty. Sent to Quality" := SalesLine2."Qty. Sent to Quality" + SalesLine2."Qty. Sending to Quality";
-        SalesLine2."Qty. Sending to Quality" := 0;
+        SalesLine2."Qty. Sent to Quality GLF" := SalesLine2."Qty. Sent to Quality GLF" + SalesLine2."Qty. Sending to Quality GLF";
+        SalesLine2."Qty. Sending to Quality GLF" := 0;
         SalesLine2.MODIFY();
         MESSAGE(Text000Msg);
     end;

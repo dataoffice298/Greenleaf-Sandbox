@@ -4,7 +4,7 @@ pageextension 65002 ItemCardExtB2B extends "Item Card"
     {
         addlast("Quality B2B")
         {
-            field("Dispatch Qc"; Rec."Dispatch Qc")
+            field("Dispatch Qc"; Rec."Dispatch Qc GLF")
             {
                 ApplicationArea = All;
                 Caption = 'Sales Dispatch Qc';

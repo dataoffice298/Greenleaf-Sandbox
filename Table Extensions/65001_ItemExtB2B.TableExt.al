@@ -2,7 +2,7 @@ tableextension 65001 ItemExtB2B extends Item
 {
     fields
     {
-        field(65000; "Dispatch Qc"; Boolean)
+        field(65000; "Dispatch Qc GLF"; Boolean)
         {
             Caption = 'Dispatch Qc';
             DataClassification = CustomerContent;

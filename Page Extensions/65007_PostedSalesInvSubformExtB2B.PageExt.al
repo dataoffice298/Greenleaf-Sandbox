@@ -5,7 +5,7 @@ pageextension 65007 PostedSaleInvSubformExtB2B extends "Posted Sales Invoice Sub
         addafter("No.")
         {
             //B2BPAVON01AUG22>>
-            field(Select; Rec.Select)
+            field(Select; Rec."Select GLF")
             {
                 ApplicationArea = All;
             }

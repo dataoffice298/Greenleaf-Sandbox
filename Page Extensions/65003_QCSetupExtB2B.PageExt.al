@@ -4,7 +4,7 @@ pageextension 65003 QCSetupPageExtB2B extends "Quality Control Setup B2B"
     {
         addlast(Numbering)
         {
-            field("Vendor Sample No."; Rec."Vendor Sample No.")
+            field("Vendor Sample No."; Rec."Vendor Sample No. GLF")
             {
                 ApplicationArea = All;
             }

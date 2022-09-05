@@ -613,7 +613,7 @@ report 65004 "Sample Invoice"
                             //To get the sum of quantity for selected lines.
                             SalesInvoiceLineGRec.Reset();
                             SalesInvoiceLineGRec.SetRange("Document No.", "Document No.");
-                            SalesInvoiceLineGRec.SetRange(Select, true);
+                            SalesInvoiceLineGRec.SetRange("Select GLF", true);
                             SalesInvoiceLineGRec.SetFilter("No.", '<>%1', '');
                             if SalesInvoiceLineGRec.FindSet() then begin
                                 SalesInvoiceLineGRec.CalcSums(Quantity);

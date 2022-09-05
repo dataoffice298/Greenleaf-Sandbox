@@ -4,7 +4,7 @@ pageextension 65008 ReleasedProductionOrderExtB2B extends "Released Production O
     {
         addafter(Blocked)
         {
-            field("Sample ID"; Rec."Sample ID")
+            field("Sample ID"; Rec."Sample ID GLF")
             {
                 ApplicationArea = All;
                 Editable = false;

@@ -111,7 +111,7 @@ report 65000 "Sample Dispatch Letter"
             {
 
             }
-            column(Sample_ID; "Sample ID")
+            column(Sample_ID; "Sample ID GLF")
             {
 
             }

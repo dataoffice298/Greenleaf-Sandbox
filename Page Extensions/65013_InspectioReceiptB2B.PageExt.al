@@ -4,7 +4,7 @@ pageextension 65013 InspectionReceiptExtB2B extends "Inspection Receipt B2B"
     {
         addlast(General)
         {
-            field("Sample ID"; Rec."Sample ID")
+            field("Sample ID"; Rec."Sample ID GLF")
             {
                 ApplicationArea = All;
                 Editable = false;

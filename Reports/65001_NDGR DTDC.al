@@ -93,7 +93,7 @@ report 65001 "NDGR DTDC"
             dataitem("Sales Line"; "Sales Line")
             {
                 DataItemLink = "Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.");
-                DataItemTableView = WHERE(Type = CONST(Item), Select = const(true));
+                DataItemTableView = WHERE(Type = CONST(Item), "Select GLF" = const(true));
                 DataItemLinkReference = "Sales Header";
 
                 column(SI1; SI1)
@@ -149,7 +149,7 @@ report 65001 "NDGR DTDC"
                     SalesLineGRec.Reset();
                     SalesLineGRec.SetRange("Document Type", "Document Type");
                     SalesLineGRec.SetRange("Document No.", "Document No.");
-                    SalesLineGRec.SetRange(Select, true);
+                    SalesLineGRec.SetRange("Select GLF", true);
                     SalesLineGRec.SetFilter("No.", '<>%1', '');
                     if SalesLineGRec.FindSet() then begin
                         SalesLineGRec.CalcSums(Quantity);

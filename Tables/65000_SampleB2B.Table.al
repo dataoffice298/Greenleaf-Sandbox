@@ -736,9 +736,9 @@ table 65000 "Sample B2B"
     trigger OnInsert();
     begin
         QCSetup.GET();
-        QCSetup.TESTFIELD(QCSetup."Vendor Sample No.");
+        QCSetup.TESTFIELD(QCSetup."Vendor Sample No. GLF");
         if "Sample ID" = '' then
-            NoSeriesMgt.InitSeries(QCSetup."Vendor Sample No.", xRec."No. Series", WORKDATE(), "Sample ID", "No. Series");
+            NoSeriesMgt.InitSeries(QCSetup."Vendor Sample No. GLF", xRec."No. Series", WORKDATE(), "Sample ID", "No. Series");
         "Receipt Date" := TODAY();
     end;
 
@@ -766,10 +766,10 @@ table 65000 "Sample B2B"
     begin
         SampleRec := Rec;
         QCSetup.GET();
-        QCSetup.TESTFIELD("Vendor Sample No.");
-        if NoSeriesMgt.SelectSeries(QCSetup."Vendor Sample No.", SampleRec."Sample ID", SampleRec."Sample ID") then begin
+        QCSetup.TESTFIELD("Vendor Sample No. GLF");
+        if NoSeriesMgt.SelectSeries(QCSetup."Vendor Sample No. GLF", SampleRec."Sample ID", SampleRec."Sample ID") then begin
             QCSetup.GET();
-            QCSetup.TESTFIELD("Vendor Sample No.");
+            QCSetup.TESTFIELD("Vendor Sample No. GLF");
             NoSeriesMgt.SetSeries(SampleRec."Sample ID");
             Rec := SampleRec;
             exit(true);

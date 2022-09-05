@@ -4,37 +4,37 @@ pageextension 65001 SalesOrderSubfromExtB2B extends "Sales Order Subform"
     {
         addafter("Shipment Date")
         {
-            field("Dispatch Qc"; Rec."Dispatch Qc")
+            field("Dispatch Qc"; Rec."Dispatch Qc GLF")
             {
                 ToolTip = 'Specifies the value of the Dispatch Qc field.';
                 ApplicationArea = All;
             }
-            field("Spec ID"; Rec."Spec ID")
+            field("Spec ID"; Rec."Spec ID GLF")
             {
                 ToolTip = 'Specifies the value of the Spec ID field.';
                 ApplicationArea = All;
             }
-            field("Qty. Sending To Quality"; Rec."Qty. Sending To Quality")
+            field("Qty. Sending To Quality"; Rec."Qty. Sending To Quality GLF")
             {
                 ToolTip = 'Specifies the value of the Qty. Sending To Quality field.';
                 ApplicationArea = All;
             }
-            field("Quantity Accepted"; Rec."Quantity Accepted")
+            field("Quantity Accepted"; Rec."Quantity Accepted GLF")
             {
                 ToolTip = 'Specifies the value of the Quantity Accepted field.';
                 ApplicationArea = All;
             }
-            field("Quantity Rework"; Rec."Quantity Rework")
+            field("Quantity Rework"; Rec."Quantity Rework GLF")
             {
                 ToolTip = 'Specifies the value of the Quantity Rework field.';
                 ApplicationArea = All;
             }
-            field("Quantity Rejected"; Rec."Quantity Rejected")
+            field("Quantity Rejected"; Rec."Quantity Rejected GLF")
             {
                 ToolTip = 'Specifies the value of the Quantity Rejected field.';
                 ApplicationArea = All;
             }
-            field("Qty. Sent To Quality"; Rec."Qty. Sent To Quality")
+            field("Qty. Sent To Quality"; Rec."Qty. Sent To Quality GLF")
             {
                 ToolTip = 'Specifies the value of the Qty. Sent To Quality field.';
                 ApplicationArea = All;
@@ -43,7 +43,7 @@ pageextension 65001 SalesOrderSubfromExtB2B extends "Sales Order Subform"
         addbefore("No.")
         {
             //B2BPAVON01AUG22>>
-            field(Select; Rec.Select)
+            field(Select; Rec."Select GLF")
             {
                 ApplicationArea = All;
             }
@@ -118,7 +118,7 @@ pageextension 65001 SalesOrderSubfromExtB2B extends "Sales Order Subform"
     }
     procedure CreateInspecDataSheets();
     Begin
-        IF Rec.Quantity >= (Rec."Qty. Sending to Quality" + Rec."Qty. Sent to Quality") THEN
+        IF Rec.Quantity >= (Rec."Qty. Sending to Quality GLF" + Rec."Qty. Sent to Quality GLF") THEN
             Rec.CreateInspectionDataSheets()
         ELSE
             ERROR(Text50001Err);

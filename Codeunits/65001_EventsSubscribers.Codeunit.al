@@ -5,26 +5,26 @@ codeunit 65001 MyCodeunit
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Inspection Jnl. Post Line B2B", 'OnBeforeInsertQualityLedgerEntry', '', false, false)]
     procedure OnBeforeInsertQualityLedgerEntry(var QualityLedgerEntry: Record "Quality Ledger Entry B2B"; InspectReceipt: Record "Inspection Receipt Header B2B")
     begin
-        QualityLedgerEntry."Sales Line No" := InspectReceipt."Sales. Line No";
+        QualityLedgerEntry."Sales Line No GLF" := InspectReceipt."Sales. Line No GLF";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Post-Inspection Data Sheet B2B", 'OnBeforeInsertInspectionReportHeader', '', false, false)]
     procedure OnBeforeInsertInspectionReportHeader(var InspectReportHeader: Record "Inspection Receipt Header B2B"; InspectHeader: Record "Posted Ins DatasheetHeader B2B")
     begin
-        InspectReportHeader."Sales. Line No" := InspectHeader."Sales. Line No";
+        InspectReportHeader."Sales. Line No GLF" := InspectHeader."Sales. Line No GLF";
         if InspectHeader."Document Type" = InspectHeader."Document Type"::"Sales Order" then
             InspectReportHeader."Document Type" := InspectReportHeader."Document Type"::"Sales Order";
         if InspectHeader."Document Type" = InspectHeader."Document Type"::"Sample QC" then
             InspectReportHeader."Document Type" := InspectReportHeader."Document Type"::"Sample QC";
-        InspectReportHeader."Sample ID" := InspectHeader."Sample ID";
+        InspectReportHeader."Sample ID GLF" := InspectHeader."Sample ID GLF";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, 80, 'OnAfterSalesShptLineInsert', '', false, false)]
     local procedure QualityCheckInspect(var SalesShipmentLine: Record "Sales Shipment Line"; SalesLine: Record "Sales Line"; ItemShptLedEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSuppressed: Boolean; SalesInvoiceHeader: Record "Sales Invoice Header"; var TempWhseShptHeader: Record "Warehouse Shipment Header" temporary; var TempWhseRcptHeader: Record "Warehouse Receipt Header" temporary)
     begin
-        if SalesLine."Dispatch Qc" then begin
-            SalesLine.CalcFields("Quantity Accepted");
-            if SalesLine."Quantity Accepted" < ABS(SalesLine."Qty. to Ship") + SalesLine."Quantity Shipped" then
+        if SalesLine."Dispatch Qc GLF" then begin
+            SalesLine.CalcFields("Quantity Accepted GLF");
+            if SalesLine."Quantity Accepted GLF" < ABS(SalesLine."Qty. to Ship") + SalesLine."Quantity Shipped" then
                 Error(Text33000250Err, SalesLine."Document No.", SalesLine."Line No.");
         end;
     end;
@@ -46,7 +46,7 @@ codeunit 65001 MyCodeunit
     begin
         if InspectReceipt."Document Type" = InspectReceipt."Document Type"::"Sales Order" then begin
             InspectDataSheet.SETRANGE("Order No.", InspectReceipt."Order No.");
-            InspectDataSheet.SetRange("Sales. Line No", InspectReceipt."Sales. Line No");
+            InspectDataSheet.SetRange("Sales. Line No GLF", InspectReceipt."Sales. Line No GLF");
         end;
     end;
 
@@ -57,11 +57,11 @@ codeunit 65001 MyCodeunit
             if InspectReportHeader."Quality Before Receipt" then begin
                 InspectReportHeader.SETRANGE("Order No.", InspectHeader."Order No.");
                 if InspectHeader."Document Type" = InspectHeader."Document Type"::"Sales Order" then
-                    InspectReportHeader.SETRANGE("Sales. Line No", InspectHeader."Sales. Line No");
+                    InspectReportHeader.SETRANGE("Sales. Line No GLF", InspectHeader."Sales. Line No GLF");
             end else
                 if InspectHeader."Document Type" = InspectHeader."Document Type"::"Sales Order" then begin
                     InspectReportHeader.SETRANGE("Order No.", InspectHeader."Order No.");
-                    InspectReportHeader.SETRANGE("Sales. Line No", InspectHeader."Sales. Line No");
+                    InspectReportHeader.SETRANGE("Sales. Line No GLF", InspectHeader."Sales. Line No GLF");
                     //InspectReportHeader.SETRANGE("Lot No.", InspectHeader."Lot No.");
                     InspectReportHeader.SETRANGE("Rework Reference No.", InspectHeader."Rework Reference No.");
                 end else begin
@@ -166,13 +166,13 @@ codeunit 65001 MyCodeunit
         PurchHeader: Record "Purchase Header";
     begin
         if PurchHeader.get(PurchHeader."Document Type"::Order, PurchRcptHeader."Order No.") then
-            InspectDataHeader."Sample ID" := PurchHeader."Sample ID";
+            InspectDataHeader."Sample ID GLF" := PurchHeader."Sample ID GLF";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Inspection Data Sheets B2B", 'OnAfterInitInspectioHeaderInsTypePurchaseBeforeInspection', '', false, false)]
     procedure OnAfterInitInspectioHeaderInsTypePurchaseBeforeInspection(var InspectDataHeader: Record "Ins Datasheet Header B2B"; PurchHeader: Record "Purchase Header"; PurchLine: Record "Purchase Line")
     begin
-        InspectDataHeader."Sample ID" := PurchHeader."Sample ID";
+        InspectDataHeader."Sample ID GLF" := PurchHeader."Sample ID GLF";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Inspection Data Sheets B2B", 'OnAfterInitInspectionHeaderInsTypeProductionOrder', '', false, false)]
@@ -181,7 +181,7 @@ codeunit 65001 MyCodeunit
         ProdOrder: Record "Production Order";
     begin
         if ProdOrder.Get(ProdOrderLine.Status, ProdOrderLine."Prod. Order No.") then
-            InspectDataHeader."Sample ID" := ProdOrder."Sample ID";
+            InspectDataHeader."Sample ID GLF" := ProdOrder."Sample ID GLF";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Inspection Data Sheets B2B", 'OnAfterInitInspectionHeaderInsTypePurchaseLot', '', false, false)]
@@ -190,14 +190,14 @@ codeunit 65001 MyCodeunit
         PurchHeader: Record "Purchase Header";
     begin
         if PurchHeader.get(PurchHeader."Document Type"::Order, PurchRcptHeader."Order No.") then
-            InspectDataHeader."Sample ID" := PurchHeader."Sample ID";
+            InspectDataHeader."Sample ID GLF" := PurchHeader."Sample ID GLF";
     end;
 
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Inspection Data Sheets B2B", 'OnAfterInitInspectionHeaderInsTypeRework', '', false, false)]
     procedure OnAfterInitInspectionHeaderInsTypeRework(var InspectDataHeader: Record "Ins Datasheet Header B2B"; InspectionReceipt: Record "Inspection Receipt Header B2B"; PurchRcptLine: Record "Purch. Rcpt. Line")
     begin
-        InspectDataHeader."Sample ID" := InspectionReceipt."Sample ID";
+        InspectDataHeader."Sample ID GLF" := InspectionReceipt."Sample ID GLF";
     end;
 
     var

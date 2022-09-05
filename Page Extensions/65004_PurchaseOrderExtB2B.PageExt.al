@@ -4,7 +4,7 @@ pageextension 65004 PurchaseOrderExtB2B extends "Purchase Order"
     {
         addafter(Status)
         {
-            field("Sample ID"; Rec."Sample ID")
+            field("Sample ID"; Rec."Sample ID GLF")
             {
                 ApplicationArea = All;
                 Editable = false;

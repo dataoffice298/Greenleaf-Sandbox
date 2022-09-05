@@ -427,7 +427,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Inspection Data Sheet List B2B";
-                        RunPageLink = "Sample ID" = field("Sample ID");
+                        RunPageLink = "Sample ID GLF" = field("Sample ID");
                     }
                     action(PostedInspectionDataSheets)
                     {
@@ -439,7 +439,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Posted Ins DataSheet List B2B";
-                        RunPageLink = "Sample ID" = field("Sample ID");
+                        RunPageLink = "Sample ID GLF" = field("Sample ID");
                     }
                     action(InspectionReceipts)
                     {
@@ -451,7 +451,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Inspection Receipt List B2B";
-                        RunPageLink = "Sample ID" = field("Sample ID");
+                        RunPageLink = "Sample ID GLF" = field("Sample ID");
                     }
                     action(PostedInspectionReceipts)
                     {
@@ -463,7 +463,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Posted Ins Receipt List B2B";
-                        RunPageLink = "Sample ID" = field("Sample ID");
+                        RunPageLink = "Sample ID GLF" = field("Sample ID");
                     }
                 }
                 group(Orders)
@@ -479,7 +479,7 @@ page 65001 "Sample Card B2B"
                         PromotedOnly = true;
                         RunObject = page "Sales Order";
                         RunPageLink = "No." = field("Sample Order No."),
-                                        "Sample ID" = field("Sample ID");
+                                        "Sample ID GLF" = field("Sample ID");
                     }
                     action(SampleDispatchOrder)
                     {
@@ -492,7 +492,7 @@ page 65001 "Sample Card B2B"
                         PromotedOnly = true;
                         RunObject = page "Sales Order";
                         RunPageLink = "No." = field("Sample Dispatch No."),
-                                        "Sample ID" = field("Sample ID");
+                                        "Sample ID GLF" = field("Sample ID");
                     }
                     action(SamplePurchaseOrder)
                     {
@@ -504,7 +504,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Purchase Order";
-                        RunPageLink = "Sample ID" = field("Sample ID"),
+                        RunPageLink = "Sample ID GLF" = field("Sample ID"),
                                         "No." = field("Sample Purchase Order No.");
                     }
                     action(SamplePurchDispatchOrder)
@@ -517,7 +517,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Purchase Order";
-                        RunPageLink = "Sample ID" = field("Sample ID"),
+                        RunPageLink = "Sample ID GLF" = field("Sample ID"),
                                         "No." = field("Sample Purchase Dispatch No.");
                     }
                     action(SampleProductionOrder)
@@ -530,7 +530,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Released Production Order";
-                        RunPageLink = "Sample ID" = field("Sample ID"),
+                        RunPageLink = "Sample ID GLF" = field("Sample ID"),
                                         "No." = field("Sample Prod. Order No.");
                     }
                     action(SampleDispatchProductionOrder)
@@ -543,7 +543,7 @@ page 65001 "Sample Card B2B"
                         //PromotedIsBig = true;
                         PromotedOnly = true;
                         RunObject = page "Released Production Order";
-                        RunPageLink = "Sample ID" = field("Sample ID"),
+                        RunPageLink = "Sample ID GLF" = field("Sample ID"),
                                         "No." = field("Sample Dispatch Prod. No.");
                     }
                 }
@@ -593,7 +593,7 @@ page 65001 "Sample Card B2B"
             SalesHeader.Init();
             SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
             SalesHeader.Validate("Sell-to Customer No.", Rec."Customer No.");
-            SalesHeader."Sample ID" := Rec."Sample ID";
+            SalesHeader."Sample ID GLF" := Rec."Sample ID";
             SalesHeader.Insert(true);
             //Header Part<<
 
@@ -607,7 +607,7 @@ page 65001 "Sample Card B2B"
             SalesLine.Validate(Quantity, Rec."Sample Qty");
             SalesLine.Validate("Unit of Measure Code", Rec."Sample UOM");
             SalesLine.Validate("Unit Cost", 0);
-            SalesLine."Spec ID" := Rec."Sales Spec ID";
+            SalesLine."Spec ID GLF" := Rec."Sales Spec ID";
             SalesLine.Insert(true);
             //Line Part<<
             Rec."Sample Order No." := SalesHeader."No.";
@@ -628,7 +628,7 @@ page 65001 "Sample Card B2B"
             SalesHeader.Init();
             SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
             SalesHeader.Validate("Sell-to Customer No.", Rec."Customer No.");
-            SalesHeader."Sample ID" := Rec."Sample ID";
+            SalesHeader."Sample ID GLF" := Rec."Sample ID";
             SalesHeader.Insert(true);
             //Header Part<<
 
@@ -642,7 +642,7 @@ page 65001 "Sample Card B2B"
             SalesLine.Validate(Quantity, Rec."Dispatch Qty");
             SalesLine.Validate("Unit of Measure Code", Rec."Sample UOM");
             SalesLine.Validate("Unit Cost", 0);
-            SalesLine."Spec ID" := Rec."Sales Spec ID";
+            SalesLine."Spec ID GLF" := Rec."Sales Spec ID";
             SalesLine.Insert(true);
             //Line Part<<
             Rec."Sample Dispatch No." := SalesHeader."No.";
@@ -663,7 +663,7 @@ page 65001 "Sample Card B2B"
             PurchaseHeader.Init();
             PurchaseHeader."Document Type" := PurchaseHeader."Document Type"::Order;
             PurchaseHeader.Validate("Buy-from Vendor No.", Rec."Vendor No.");
-            PurchaseHeader."Sample ID" := Rec."Sample ID";
+            PurchaseHeader."Sample ID GLF" := Rec."Sample ID";
             PurchaseHeader.Insert(true);
             //Header Part<<
 
@@ -698,7 +698,7 @@ page 65001 "Sample Card B2B"
             PurchaseHeader.Init();
             PurchaseHeader."Document Type" := PurchaseHeader."Document Type"::Order;
             PurchaseHeader.Validate("Buy-from Vendor No.", Rec."Vendor No.");
-            PurchaseHeader."Sample ID" := Rec."Sample ID";
+            PurchaseHeader."Sample ID GLF" := Rec."Sample ID";
             PurchaseHeader.Insert(true);
             //Header Part<<
 
@@ -734,7 +734,7 @@ page 65001 "Sample Card B2B"
             ProdOrder."Source Type" := ProdOrder."Source Type"::Item;
             ProdOrder.Validate("Source No.", Rec."Item No.");
             ProdOrder.Validate(Quantity, Rec."Sample Qty");
-            ProdOrder."Sample ID" := Rec."Sample ID";
+            ProdOrder."Sample ID GLF" := Rec."Sample ID";
             ProdOrder.Status := ProdOrder.Status::Released;
             ProdOrder.Insert(true);
             ProdOrdNo := ProdOrder."No.";
@@ -763,7 +763,7 @@ page 65001 "Sample Card B2B"
             ProdOrder."Source Type" := ProdOrder."Source Type"::Item;
             ProdOrder.Validate("Source No.", Rec."Item No.");
             ProdOrder.Validate(Quantity, Rec."Dispatch Qty");
-            ProdOrder."Sample ID" := Rec."Sample ID";
+            ProdOrder."Sample ID GLF" := Rec."Sample ID";
             ProdOrder.Status := ProdOrder.Status::Released;
             ProdOrder.Insert(true);
             ProdOrdNo := ProdOrder."No.";

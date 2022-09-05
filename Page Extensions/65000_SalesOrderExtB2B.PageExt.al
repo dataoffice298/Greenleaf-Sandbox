@@ -6,7 +6,7 @@ pageextension 65000 SalesOrderPageExtB2B extends "Sales Order"
         {
 
 
-            field("Sample ID"; Rec."Sample ID")
+            field("Sample ID"; Rec."Sample ID GLF")
             {
                 ApplicationArea = All;
                 Editable = false;
@@ -27,7 +27,7 @@ pageextension 65000 SalesOrderPageExtB2B extends "Sales Order"
                 SaleLine.Reset();
                 SaleLine.SetRange("Document No.", Rec."No.");
                 SaleLine.SetFilter("No.", '<>%1', '');
-                SaleLine.SetRange(Select, true);
+                SaleLine.SetRange("Select GLF", true);
                 if not SaleLine.FindFirst() then
                     Error(ErrSelect);
             end;

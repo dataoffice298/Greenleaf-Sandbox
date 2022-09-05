@@ -145,7 +145,7 @@ report 65003 "NDGR DHL"
                     SalesLineGRec.Reset();
                     SalesLineGRec.SetRange("Document Type", "Document Type");
                     SalesLineGRec.SetRange("Document No.", "Document No.");
-                    SalesLineGRec.SetRange(Select, true);
+                    SalesLineGRec.SetRange("Select GLF", true);
                     SalesLineGRec.SetFilter("No.", '<>%1', '');
                     if SalesLineGRec.FindSet() then begin
                         SalesLineGRec.CalcSums(Quantity);

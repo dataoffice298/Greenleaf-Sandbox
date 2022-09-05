@@ -1,6 +1,6 @@
 {
   "id": "b657d2d8-d869-44f8-947d-58e591af5c4a",
-  "name": "GreenLeaf",
+  "name": "GreenLeaf QC",
   "publisher": "B2B Software Technologies Ltd",
   "version": "1.0.0.2",
   "brief": "",
@@ -15,7 +15,7 @@
       "id": "1b1f1ff9-fc0c-4b3b-a8a6-4c439ede0801",
       "name": "B2B Quality Control",
       "publisher": "B2B Software Technologies Limited",
-      "version": "1.0.0.4"
+      "version": "1.0.0.5"
     },
     {
       "id": "db643212-b7fb-4dd4-b5a8-cb44ac714461",
